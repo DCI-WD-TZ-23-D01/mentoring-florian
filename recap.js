@@ -33,14 +33,15 @@ persons.filter(person=>{
     person.firstName === "florian" && person.lastName === "hahn"
     // Zwischenergebnis: [{firstName: "florian", lastName: "hahn"}]
 })
-person.map(person=>{
+persons.map(person=>{
     person.lastName
     // Zwischenergebnis: [{lastName: "hahn"}]
 })
-person.join("") // "hahn" 
+persons.join("") // "hahn" 
 
 // Kurze Lösung
-persons.filter(person=> person.firstName === "florian" && person.lastName === "hahn").map(person=>person.lastName).join("");
+const hahn = persons.filter(person=> person.firstName === "florian" && person.lastName === "hahn").map(person=>person.lastName).join("");
+console.log(hahn)
 
 // 3. reduce
 // Durchläuft jeden Index des Arrays und wir können den Arrays verkleinern, indem wir dessen Werte z.B. verrechnen und das besondere am Reduce ist, dass wir zusätzlich einen optinalen Startwert vergeben können.
@@ -50,17 +51,18 @@ let startWert = 0;
 // Zwei Parameter Accumulator und der currentValue
 // acc = Der Wert aus der vorherigen Berechnung
 // current =  Der aktuelle Wert des Indexelementes
-warenkorbPreise.reduce((acc,current)=>{
-    acc+current,        
+const gesamt = warenkorbPreise.reduce((acc,current)=>{
+    return acc+current;
+    console.log(acc)     
     // 1. Durchlauf:0      + [0] = 19.99  = 19.99  
     // 2. Durchlauf:19.99  + [1] = 99.99  = 119.98
     // 3. Durchlauf: 119.98+ [2] = 10     = 129.98  
     // 4. Durchlauf:129.98 + [3] = 3      = 132.98
     // 5. Durchlauf 132.98 + [4] = 500    = 632.98
-    startWert           // 0
+    //startWert           // 0
 });
 // Beispiel der Durchläufe:
-console.log(warenkorbPreise) // 632,98
+console.log(gesamt); // 632,98
 
 const warenkorb = [{name:"milch", price: 19.99}, {name:"eier", price: 3}];
 
@@ -81,7 +83,7 @@ friends.reduce((acc,current)=>{
 // Aufgabe: Reverse a String!
 const vorname = "florian"; 
 const satz = "heute ist freitag"
-console.log(vorname.split(""));
+console.log(vorname.split("").reverse().join(""));
 const reversedVorname = vorname.split("").reverse().join("");
 // Idee: String  >  Array          > Array           > String
 //       florian > [f,l,o,r,i,a,n] > [n,a,i,r,o,l,f] > nairolf
