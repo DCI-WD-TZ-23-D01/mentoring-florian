@@ -1,0 +1,13 @@
+{
+  "name": "zweitesmentoring",
+  "version": "1.0.0",
+  "type":"module",
+  "description": "",
+  "main": "javascript.js",
+  "scripts": {
+    "dev": "node indexStart.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
