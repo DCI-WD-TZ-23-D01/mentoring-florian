@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // fetch("https://pokeapi.co/api/v2/pokemon/ditto") // fetch Promise mit Endpunkt
+      // .then(res=>res.json()) // ergibt immer fullfilled vom fetch Promise
+      //    .then(data=>console.log(data)) // fullfilled vom JSON Promise
+      // .catch(err=>console.log("Ein Fehler ist aufgetreten")) // ergibt immer rejected vom fetch Promise
+
+      const getPokemonData = async () => {
+        // Die Funktion als Codeblock ist async
+        // Das Errorhandling mit Promises im async/await müssen wir mit tryCatch durchführen, da wir nicht auf .catch() zugreifen können
+        try {
+          const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto"); // fetch Promise
+          console.log(res); // Statusabfrage vom Promise ohne await: { <state>: "pending" }
+            if(res.status === 200){
+                const data = await res.json();
+                console.log(data);
+            } else {
+                console.error("API hat einen Fehler erzeugt");
+                // throw new Error("Ein Fehler ist aufgetreten"); 
+                // Oder Ausführung innerhalb von NodeJS Umgebung
+            }
+          // HIER IST DER FETCH OHNE AWAIT FERTIG
+        } catch (error) {
+            // redirect zur Homepage oder sage, dass der Nutzer sich einloggen soll
+            console.log("Ein Fehler ist aufgetreten");
+        }
+      };
+
+      getPokemonData();
+    </script>
+  </body>
+</html>
