@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task 5</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .message {
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .success {
+        background-color: #4bb543;
+      }
+      .error {
+        background-color: tomato;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <form action="checkEmailAndPassword.php" method="post">
+
+    </form> -->
+    <form id="registration-form">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+        <!-- Ein HTML Type Email hat nur die DefaultJS Überprüfung von mindestens einem @ Zeichen innerhalb vom value
+        @@@ || florian@test@.de sind KEINE validen Emails
+        STRING-Zahl|Buchstabe+@+Zahl|Buchstabe+.+2/3Buchstaben -->
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <!-- <input type="submit" value="Submit" id="submit"/> -->
+      <button>Submit</button>
+      <!-- 
+      Nicht jedes HTML Tag Element unterstüzt alle Event Listener !
+      z.B. das HTML Tag FORM unterstüzt "SUBMIT", aber ein h1 unterstüzt kein submit
+      z.B. das INPUT Tag Element unterstüzt "CHANGE", aber ein div unterstüzt es nicht 
+      -->
+    </form>
+
+    <div class="message"></div>
+
+    <script>
+      // Sobald im Browser DOMContentLoaded erreicht ist, ist das Formular mit dem Event Listener erreichbar
+      const form = document.getElementById("registration-form");
+      const message = document.querySelector(".message"); // Global Scope message
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Standardverhalten vom FORM Tag Element
+        // Um die Datenstruktur und NICHT den DOM zu erhalten, Zugriff über .value
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        // Wir können die Classlist statt .remove zu benutzen auch direkt "Hardcoden"
+        // message.classList = "message";
+        // Überprüfung: 1. Wieviele Bedingungen muss ich überprüfen 2. Datenstruktur
+        if(email === "" || password === ""){
+            // message.innerHTML || message.innerText || message.textContent
+            message.textContent = "FEHLER: Du musst sowohl eine E-Mail als auch ein Passwort eingeben.";
+            message.classList.add("error");  // Zu einem ganz ganz kurzen Zeitpunkt hat das DIV drei Klassen
+            message.classList.remove("succes");
+        } else {
+            message.textContent = "ERFOLG: Registrierung abgeschlossen.";
+            message.classList.remove("error");
+            message.classList.add("success");
+        };
+      });
+
+      // const submitBtn = document.querySelector("button");
+      // form.addEventListener("submit", checkInput)
+      // submitBtn.addEventListener("submit", checkInput)
+      // const checkInput = () =>{}
+
+      // document.getElementById("registration-form").addEventListener("submit",)
+    </script>
+  </body>
+</html>
